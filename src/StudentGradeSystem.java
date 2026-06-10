@@ -22,7 +22,25 @@ public class StudentGradeSystem {
         System.out.println("Student Added Successfully!");
     }
 
+    public static void displayStudents() {
+        if (students.isEmpty()) {
+            System.out.println("No Students Found.");
+            return;
+        }
+
+        System.out.println("\nStudent List:");
+
+        for (Student s : students) {
+            System.out.println(
+                "ID: " + s.getStudentId() +
+                ", Name: " + s.getStudentName() +
+                ", Marks: " + s.getMarks()
+            );
+        }
+    }
+
     public static void main(String[] args) {
         addStudent();
+        displayStudents();
     }
 }
