@@ -4,10 +4,9 @@ import java.util.Scanner;
 public class StudentGradeSystem {
 
     static ArrayList<Student> students = new ArrayList<>();
+    static Scanner input = new Scanner(System.in);
 
     public static void addStudent() {
-        Scanner input = new Scanner(System.in);
-
         System.out.print("Enter Student ID: ");
         String id = input.nextLine();
 
@@ -16,6 +15,7 @@ public class StudentGradeSystem {
 
         System.out.print("Enter Marks: ");
         double marks = input.nextDouble();
+        input.nextLine();
 
         students.add(new Student(id, name, marks));
 
@@ -39,7 +39,10 @@ public class StudentGradeSystem {
         }
     }
 
-    public static void searchStudent(String id) {
+    public static void searchStudent() {
+        System.out.print("Enter Student ID to Search: ");
+        String id = input.nextLine();
+
         for (Student s : students) {
             if (s.getStudentId().equals(id)) {
                 System.out.println("\nStudent Found");
@@ -71,13 +74,46 @@ public class StudentGradeSystem {
     }
 
     public static void main(String[] args) {
-        addStudent();
-        displayStudents();
 
-        // Search student example
-        searchStudent("S001");
+        int choice;
 
-        // Calculate average marks
-        calculateAverage();
+        do {
+            System.out.println("\n===== Student Grade Management System =====");
+            System.out.println("1. Add Student");
+            System.out.println("2. Display All Students");
+            System.out.println("3. Search Student by ID");
+            System.out.println("4. Calculate Average Marks");
+            System.out.println("5. Exit");
+            System.out.print("Enter Choice: ");
+
+            choice = input.nextInt();
+            input.nextLine();
+
+            switch (choice) {
+                case 1:
+                    addStudent();
+                    break;
+
+                case 2:
+                    displayStudents();
+                    break;
+
+                case 3:
+                    searchStudent();
+                    break;
+
+                case 4:
+                    calculateAverage();
+                    break;
+
+                case 5:
+                    System.out.println("Thank You!");
+                    break;
+
+                default:
+                    System.out.println("Invalid Choice!");
+            }
+
+        } while (choice != 5);
     }
 }
