@@ -39,8 +39,45 @@ public class StudentGradeSystem {
         }
     }
 
+    public static void searchStudent(String id) {
+        for (Student s : students) {
+            if (s.getStudentId().equals(id)) {
+                System.out.println("\nStudent Found");
+                System.out.println("ID: " + s.getStudentId());
+                System.out.println("Name: " + s.getStudentName());
+                System.out.println("Marks: " + s.getMarks());
+                return;
+            }
+        }
+
+        System.out.println("Student Not Found");
+    }
+
+    public static void calculateAverage() {
+        if (students.isEmpty()) {
+            System.out.println("No Students Available.");
+            return;
+        }
+
+        double total = 0;
+
+        for (Student s : students) {
+            total += s.getMarks();
+        }
+
+        double average = total / students.size();
+
+        System.out.println("Average Marks: " + average);
+    }
+
     public static void main(String[] args) {
         addStudent();
         displayStudents();
+
+        // Search student example
+        searchStudent("S001");
+
+        // Calculate average marks
+        calculateAverage();
     }
 }
